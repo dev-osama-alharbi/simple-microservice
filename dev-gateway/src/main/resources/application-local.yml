@@ -1,0 +1,33 @@
+server:
+  application:
+    name: dev-gateway
+  port: 88
+
+########### EUREKA ###########
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  fetch-registry: true
+  register-with-eureka: true
+
+########### GATEWAY ###########
+spring:
+  cloud:
+    gateway:
+      routes:
+        - ip: pub-client-api
+          uri: lb://PUB-CLIENT-API
+          predicates:
+            - Path=/api/v1/client/**
+          ########
+        - ip: pub-manager-api
+          uri: lb://PUB-MANAGER-API
+          predicates:
+            - Path=/api/v1/manager/**
+          ########
+        - ip: pub-orders-api
+          uri: lb://PUB-MANAGER-API
+          predicates:
+            - Path=/api/v1/orders/**
+          ########

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: pub-client-api
+  autoconfigure:
+    exclude: "org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration"

@@ -1,0 +1,34 @@
+package sa.osama_alharbi.micro.orders.prv.auth.security.authentication.client;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import sa.osama_alharbi.micro.orders.core.db.entity.ClientEntity;
+
+import java.util.List;
+
+@Setter
+@Getter
+public class ClientPrincipal extends User {
+    private Integer id = null;
+    private String username = null;
+    private String password = null;
+    private ClientEntity client = null;
+
+    //username password
+    public ClientPrincipal(String username, String password, List<? extends GrantedAuthority> authorities) {
+        super(username, password, authorities);
+        this.username = username;
+        this.password = password;
+    }
+
+    //google auth
+    public ClientPrincipal(String email, List<? extends GrantedAuthority> authorities) {
+        super(email, "", authorities);
+        this.username = email;
+        this.password = "";
+    }
+
+
+}
